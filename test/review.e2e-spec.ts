@@ -30,8 +30,8 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/review/create (POST) - success', async (done) => {
-    return request(app.getHttpServer())
+  it('/review/create (POST) - success', (done) => {
+    request(app.getHttpServer())
       .post('/review/create')
       .send(testDto)
       .expect(201)
@@ -42,8 +42,8 @@ describe('AppController (e2e)', () => {
       });
   });
 
-  it('/review/create (POST) - fail', async (done) => {
-    return request(app.getHttpServer())
+  it('/review/create (POST) - fail', (done) => {
+    request(app.getHttpServer())
       .post('/review/create')
       .send({ ...testDto, rating: 0 })
       .expect(400)
@@ -52,8 +52,8 @@ describe('AppController (e2e)', () => {
       });
   });
 
-  it('/review/byProduct/:productId (GET) - success', async (done) => {
-    return request(app.getHttpServer())
+  it('/review/byProduct/:productId (GET) - success', (done) => {
+    request(app.getHttpServer())
       .get('/review/byProduct/' + productId)
       .expect(200)
       .then(({ body }: request.Response) => {
@@ -62,8 +62,8 @@ describe('AppController (e2e)', () => {
       });
   });
 
-  it('/review/byProduct/:productId (GET) - fail', async (done) => {
-    return request(app.getHttpServer())
+  it('/review/byProduct/:productId (GET) - fail', (done) => {
+    request(app.getHttpServer())
       .get('/review/byProduct/' + new Types.ObjectId().toHexString())
       .expect(200)
       .then(({ body }: request.Response) => {
@@ -73,14 +73,14 @@ describe('AppController (e2e)', () => {
   });
 
   it('/review/:id (DELETE) - success', () => {
-    return request(app.getHttpServer())
+    request(app.getHttpServer())
       .delete('/review/' + createdId)
       .set('Authorization', 'Bearer ' + token)
       .expect(200);
   });
 
   it('/review/:id (DELETE) - fail', () => {
-    return request(app.getHttpServer())
+    request(app.getHttpServer())
       .delete('/review/' + new Types.ObjectId().toHexString())
       .set('Authorization', 'Bearer ' + token)
       .expect(404, {
