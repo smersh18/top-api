@@ -17,6 +17,7 @@ export class CreateReviewDto {
 	@IsNumber()
 	rating: number;
 
-	@IsString()
-	productId: string;
+	// @IsString()
+	// productId: string;
+
 }

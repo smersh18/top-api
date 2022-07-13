@@ -15,8 +15,10 @@ const leaks = []
 export class ReviewService {
 	constructor(@InjectModel(ReviewModel) private readonly reviewModel: ModelType<ReviewModel>) { }
 
-	async create(dto: CreateReviewDto): Promise<DocumentType<ReviewModel>> {
-		return this.reviewModel.create(dto);
+	async create(dto: CreateReviewDto) {
+		const newReview = new this.reviewModel(dto);
+		return newReview.save()
+		 // return this.reviewModel.create(, {});
 	}
 
 	async delete(id: string): Promise<DocumentType<ReviewModel> | null> {
