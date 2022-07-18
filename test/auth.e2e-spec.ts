@@ -6,7 +6,7 @@ import { disconnect } from 'mongoose';
 import { AuthDto } from 'src/auth/dto/auth.dto';
 
 const loginDto: AuthDto = {
-	login: 'a@a.ru',
+	login: 'a2@.ru',
 	password: '1'
 };
 
