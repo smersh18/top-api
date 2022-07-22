@@ -19,7 +19,7 @@ const testDto: CreateReviewDto = {
   title: 'Заголовок',
   description: 'Описание тестовое',
   rating: 5,
-  productId: "1"
+  productId
 };
 
 describe('AppController (e2e)', () => {
@@ -76,9 +76,9 @@ describe('AppController (e2e)', () => {
   it('/review/byProduct/:productId (GET) - fail', (done) => {
     request(app.getHttpServer())
       .get('/review/byProduct/' + new Types.ObjectId().toHexString())
-      .expect(200)
+      .expect(401)
       .then(({ body }: request.Response) => {
-        expect(body.length).toBe(0);
+        expect(body.length).toBe(undefined);
         done();
       });
   });

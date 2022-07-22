@@ -20,6 +20,9 @@ export class HhData {
 
 	@prop()
 	seniorSalary: number;
+
+	@prop()
+	updatedAt: Date;
 }
 
 export class TopPageAdvantage {
@@ -31,6 +34,8 @@ export class TopPageAdvantage {
 }
 
 export interface TopPageModel extends Base { }
+
+@index({ '$**': 'text' })
 export class TopPageModel extends TimeStamps {
 	@prop({ enum: TopLevelCategory })
 	firstCategory: TopLevelCategory;
@@ -43,6 +48,12 @@ export class TopPageModel extends TimeStamps {
 
 	@prop()
 	title: string;
+
+	@prop()
+	metaTitle: string;
+
+	@prop()
+	metaDescription: string;
 
 	@prop()
 	category: string;

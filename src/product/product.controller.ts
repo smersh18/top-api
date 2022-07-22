@@ -11,11 +11,13 @@ export class ProductController {
 
 	constructor(private readonly productService: ProductService) { }
 
+	@UseGuards(JwtAuthGuard)
 	@Post('create')
 	async create(@Body() dto: CreateProductDto) {
 		return this.productService.create(dto);
 	}
 
+	@UseGuards(JwtAuthGuard)
 	@Get(':id')
 	async get(@Param('id') id: string) {
 		const product = await this.productService.findById(id);
@@ -25,6 +27,7 @@ export class ProductController {
 		return product;
 	}
 
+	@UseGuards(JwtAuthGuard)
 	@Delete(':id')
 	async delete(@Param('id') id: string) {
 		const deletedProduct = await this.productService.deleteById(id);
@@ -32,6 +35,7 @@ export class ProductController {
 			throw new NotFoundException(PRODUCT_NOT_FOUND_ERROR);
 		}
 	}
+
 
 	@UseGuards(JwtAuthGuard)
 	@Patch(':id')
